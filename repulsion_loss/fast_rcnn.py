@@ -2,7 +2,7 @@ import numpy as np
 import torch
 
 from detectron2.layers import cat
-from detectron2.modeling.roi_heads.fast_rcnn import FastRCNNOutputs
+from detectron2.modeling.roi_heads.fast_rcnn import FastRCNNOutputLayers
 from detectron2.structures import Boxes, pairwise_iou
 
 
@@ -35,7 +35,7 @@ def smooth_ln(x, sigma):
         ((x - sigma) / (1 - sigma)) - np.log(1 - sigma)
     )
 
-class RepLossFastRCNNOutputs(FastRCNNOutputs):
+class RepLossFastRCNNOutputs(FastRCNNOutputLayers):
 
     def __init__(self, box2box_transform, pred_class_logits, pred_proposal_deltas, proposals, smooth_l1_beta,
                     rep_gt_factor, rep_box_factor, rep_gt_sigma, rep_box_sigma, d2_normalize):
